@@ -1,0 +1,64 @@
+<h3>Welcome, {{name}}</h3>
+<p *ngIf="age">You are {{age}} years old</p>
+
+<p *ngIf="age>0 && age<=18 then minor"></p>
+<p *ngIf="age>18 && age<=60 then adult"></p>
+<p *ngIf="age>60 then senior"></p>
+
+<ng-template #minor>You are minor</ng-template>
+<ng-template #adult>You are adult</ng-template>
+<ng-template #senior>You are senior</ng-template>
+
+
+<div [ngSwitch]="day">
+    <p *ngSwitchDefault>Something went wrong!!</p>
+    <p *ngSwitchCase="1">Monday</p>
+    <p *ngSwitchCase="2">Monday</p>
+    <p *ngSwitchCase="3">Monday</p>
+    <p *ngSwitchCase="4">Monday</p>
+    <p *ngSwitchCase="5">Monday</p>
+    <p *ngSwitchCase="6">Monday</p>
+    <p *ngSwitchCase="7">Monday</p>
+</div>
+
+<!---<input type="text" [formControl]="author"/>
+{{author | json}}
+<br>
+<b>{{author.value}}</b>-->
+
+<form [formGroup]="profileForm" (ngSubmit)="submitProfile()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" formControlName="name">
+      </div>
+      <div class="alert alert-danger" *ngIf="nameCtrl.dirty && nameCtrl.invalid && nameCtrl.hasError('required')">
+        Name not provided!!......
+      </div>
+      <div class="alert alert-danger" *ngIf="nameCtrl.dirty && nameCtrl.invalid && nameCtrl.hasError('minlength')">
+        Name min Length 3 not satisfied !....
+      </div>
+      <div class="alert alert-danger" *ngIf="nameCtrl.dirty && nameCtrl.invalid && nameCtrl.hasError('forbidden')">
+        Bob name not allowed.
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+      </div>
+      <div class="alert alert-danger" *ngIf="emailCtrl.dirty && emailCtrl.invalid && emailCtrl.hasError('required')">
+        Email not provided!!......
+      </div>
+      <div class="alert alert-danger" *ngIf="emailCtrl.dirty && emailCtrl.invalid && emailCtrl.hasError('email')">
+        Email not proper format ?!...
+      </div>
+      <div class="mb-3">
+        <label for="mobile" class="form-label">Mobile</label>
+        <input type="text" class="form-control" formControlName="mobile">
+      </div>
+      <div formGroupName="address">
+        <input placeholder="city" class="form-control" formControlName="city">
+        <input placeholder="state" class="form-control" formControlName="state">
+        <input placeholder="country" class="form-control" formControlName="country">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{{profileForm.value | json}}

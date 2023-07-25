@@ -6,8 +6,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 
 const routes : Routes = [
-  {path : 'products', component : ProductListComponent, title : 'MyStore | Products'},
-  {path : 'products/:id', component : ProductDetailsComponent,
+  {path : '', component : ProductListComponent, title : 'MyStore | Products'},
+  {path : ':id', component : ProductDetailsComponent,
     children:[{
       path:'reviews',component: ReviewsComponent
     }]
